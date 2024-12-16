@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgres://rivm_api:postgres@db:5432/rivm_api
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RAILS_ENV: production
+
+  db:
+    image: postgres:14
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: rivm_api
+      POSTGRES_PASSWORD: postgres
+
+  redis:
+    image: redis:7.0
+    ports:
+      - "6378:6379"
+volumes:
+  postgres_data:
