@@ -22,8 +22,17 @@ class Post < ApplicationRecord
     where(year:)
   }
 
-  scope :seach_by_title, ->(title) {
-    where("title LIKE ?", "%#{sanitize_sql_like(title)}%")
+  scope :search_by_title, ->(query) {
+    if query.present?
+      puts "TITLE_SEARCH #{query}"
+      sanitized_query = sanitize_sql_like(query)
+      joins("INNER JOIN mobility_string_translations AS title_translations
+            ON title_translations.translatable_id = posts.id
+            AND title_translations.translatable_type = 'Post'
+            AND title_translations.key = 'title'")
+        .where("title_translations.value LIKE ?", "%#{sanitized_query}%")
+        .distinct
+    end
   }
 
   scope :filter_by_category, ->(category_id) {

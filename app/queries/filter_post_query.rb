@@ -8,8 +8,8 @@ class FilterPostQuery
 
   def call
     @records = @records.filter_by_year(@params[:year]) if @params[:year].present?
-    @records = @records.seach_by_title(@params[:title]) if @params[:title].present?
     @records = @records.filter_by_category(@params[:category_id]) if @params[:category_id].present?
+    @records = @records.search_by_title(@params[:title]) if @params[:title].present?
 
     @records
   end
