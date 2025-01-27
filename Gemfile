@@ -49,6 +49,6 @@ end
 
 gem "active_model_serializers"
 
-gem "mobility", "~> 1.3.1"
+gem "mobility", "~> 1.3.2"
 gem "i18n", "~> 1.14"
 gem "rswag", "~> 2.16"
