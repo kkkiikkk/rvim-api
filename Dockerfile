@@ -1,26 +1,17 @@
-FROM ruby:3.3.4 AS builder
+FROM ruby:3.3.4
+
+RUN apt-get update -qq && \
+    apt-get install -y nodejs build-essential libvips libvips-dev
 
 WORKDIR /app
-
-RUN apt-get update && \
-    apt-get install -y nodejs build-essential
 
 COPY Gemfile Gemfile.lock ./
 
 RUN gem install bundler && bundle install --jobs 4 --retry 5
 
 COPY . .
+RUN bundle exec rake assets:precompile
 
-FROM ruby:3.3.4
-
-WORKDIR /app
-
-RUN apt-get update && \
-    apt-get install -y nodejs
-
-COPY --from=builder /app /app
-
-RUN bundle install --jobs 4 --retry 5
 
 ENV PATH="/app/bin:/app/vendor/bundle/bin:$PATH"
 
