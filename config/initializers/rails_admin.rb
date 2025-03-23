@@ -40,13 +40,22 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.model :post do
+  config.model 'Post' do
     edit do
       field :title
       field :description
       field :categories
-      field :cover_image, :active_storage
-      field :video, :active_storage
+      field :cover_image, :active_storage do
+        pretty_value do
+          nil
+        end
+      end
+
+      field :video, :active_storage do
+        pretty_value do
+          nil
+        end
+      end
     end
   end
 end
