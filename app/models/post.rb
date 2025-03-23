@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
-  extend Mobility
+  # extend Mobility
 
-  translates :title, type: :string
-  translates :description, type: :text
+  # translates :title, type: :string
+  # translates :description, type: :text
 
   has_and_belongs_to_many :categories
 
@@ -24,7 +24,6 @@ class Post < ApplicationRecord
 
   scope :search_by_title, ->(query) {
     if query.present?
-      puts "TITLE_SEARCH #{query}"
       sanitized_query = sanitize_sql_like(query)
       joins("INNER JOIN mobility_string_translations AS title_translations
             ON title_translations.translatable_id = posts.id
