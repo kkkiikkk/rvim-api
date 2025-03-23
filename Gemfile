@@ -55,4 +55,10 @@ gem "rswag", "~> 2.16"
 
 gem "rails_admin", "~> 3.3"
 gem "sassc-rails"
-gem 'sprockets-rails'
+gem "sprockets-rails"
+
+gem "rack-cors", "~> 2.0"
+
+gem "streamio-ffmpeg", "~> 3.0"
+
+gem "sidekiq", "~> 7.3"

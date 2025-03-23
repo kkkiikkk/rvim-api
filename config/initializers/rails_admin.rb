@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.model 'Post' do
+  config.model "Post" do
     edit do
       field :title
       field :description
