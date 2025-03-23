@@ -52,3 +52,7 @@ gem "active_model_serializers"
 gem "mobility", "~> 1.3.1"
 gem "i18n", "~> 1.14"
 gem "rswag", "~> 2.16"
+
+gem "rails_admin", "~> 3.3"
+gem "sassc-rails"
+gem 'sprockets-rails'
