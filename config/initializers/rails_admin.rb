@@ -39,4 +39,14 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model :post do
+    edit do
+      field :title
+      field :description
+      field :categories
+      field :cover_image, :active_storage
+      field :video, :active_storage
+    end
+  end
 end
